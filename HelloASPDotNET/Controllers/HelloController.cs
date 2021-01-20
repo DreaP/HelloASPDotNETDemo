@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HelloASPDotNET.Controllers
 {
+    [Route("/helloworld/")]
     public class HelloController : Controller
     {
         //Get :/<controller>/
         [HttpGet]
-        [Route("/helloworld/")]
+        //[Route("/helloworld/")] -Removed to DRY
         public IActionResult Index()
         {
 
@@ -23,10 +24,10 @@ namespace HelloASPDotNET.Controllers
         }
 
         //Get Hello/Welcome
-        //[HttpGet]
+        [HttpGet("welcome/{name?}")]
         //[Route("/helloworld/welcome/{name?}")]
         [HttpPost]
-        [Route("/helloworld/")]
+        //[Route("/helloworld/")] -Removed to DRY
         public IActionResult Welcome(string name = "World")
         {
             return Content("<h1>Welcome to my app, " + name + "!</h1>", "text/html");
