@@ -6,31 +6,21 @@ using System.Threading.Tasks;
 
 namespace HelloASPDotNET.Controllers
 {
-    [Route("/helloworld/")]
     public class HelloController : Controller
     {
-        //Get :/<controller>/
         [HttpGet]
-        //[Route("/helloworld/")] -Removed to DRY
         public IActionResult Index()
         {
-
-            string html = "<form method='post' action='/helloworld/'>" + 
-                "<input type='text' name='name' />" +
-                "<input type='submit' value='Greet Me!' /> " +
-                "</form>";
-
-            return Content(html, "text/html");
+            return View();
         }
 
-        //Get Hello/Welcome
-        [HttpGet("welcome/{name?}")]
-        //[Route("/helloworld/welcome/{name?}")]
+        
         [HttpPost]
-        //[Route("/helloworld/")] -Removed to DRY
+        [Route("/hello")]
         public IActionResult Welcome(string name = "World")
         {
-            return Content("<h1>Welcome to my app, " + name + "!</h1>", "text/html");
+            ViewBag.person = name;
+            return View();
         }
     }
 }
